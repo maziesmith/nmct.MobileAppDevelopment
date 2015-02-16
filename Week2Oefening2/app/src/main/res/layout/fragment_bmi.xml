@@ -1,0 +1,120 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="wrap_content"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity$PlaceholderFragment">
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="YOUR IPNPUT"
+        android:id="@+id/txbInput"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        style="?android:attr/listSeparatorTextViewStyle"
+        android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/height"
+        android:text="Your height"
+        android:layout_below="@+id/txbInput"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="20dp" />
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/mass"
+        android:text="Your mass"
+        android:layout_below="@+id/height"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="20dp" />
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Update"
+        android:id="@+id/updateBMI"
+        android:layout_below="@+id/mass"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="20dp" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="YOUR BMI INFO"
+        android:id="@+id/txbInfo"
+        android:layout_below="@+id/updateBMI"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="20dp"
+        style="?android:attr/listSeparatorTextViewStyle"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView"
+        android:layout_below="@+id/txbInfo"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/silhouette_1" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Index:"
+        android:id="@+id/txbIndex"
+        android:layout_toRightOf="@+id/imageView"
+        android:phoneNumber="false"
+        android:layout_alignTop="@+id/imageView"
+        android:width="100dp"
+        android:gravity="right"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Category:"
+        android:id="@+id/txbCategory"
+        android:layout_below="@+id/txbIndex"
+        android:layout_toRightOf="@+id/imageView"
+        android:layout_toEndOf="@+id/imageView"
+        android:layout_marginTop="20dp"
+        android:width="100dp"
+        android:gravity="right" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Enter your info first"
+        android:id="@+id/index"
+        android:layout_alignBottom="@+id/txbIndex"
+        android:layout_toRightOf="@+id/txbIndex"
+        android:layout_toEndOf="@+id/txbIndex"
+        android:layout_marginLeft="20dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Enter your info first"
+        android:id="@+id/category"
+        android:layout_alignBottom="@+id/txbCategory"
+        android:layout_toRightOf="@+id/txbCategory"
+        android:layout_toEndOf="@+id/txbCategory"
+        android:layout_marginLeft="20dp" />
+
+</RelativeLayout>
