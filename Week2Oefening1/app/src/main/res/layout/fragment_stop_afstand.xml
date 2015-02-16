@@ -101,9 +101,10 @@
         android:layout_alignParentStart="true"
         android:layout_marginTop="20dp" />
 
-    <EditText
+    <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
         android:id="@+id/jouw_stopafstand"
         android:layout_below="@+id/txtStopafstand"
         android:layout_alignParentStart="true" />
