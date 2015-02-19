@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Week2Oefening1B</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="speed">Selecteer uw snelheid:</string>
+    <string name="reaction">Selecteer uw reactietijd:</string>
+    <string name="track">Selecteer het wegtype:</string>
+    <string name="dry">Het wegdek ligt droog</string>
+    <string name="wet">Het wegdek ligt nat</string>
+    <string name="buttonDistance">Bereken de stopafstand</string>
+    <string name="textViewDistance">De stopafstand is:</string>
+    <string name="editTextDistance">0 meter</string>
+
+</resources>
