@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="holo_colors">
+        <item>Holo Blue</item>
+        <item>Holo Purple</item>
+        <item>Holo Green</item>
+        <item>Holo Orange</item>
+        <item>Holo Red</item>
+    </string-array>
+</resources>

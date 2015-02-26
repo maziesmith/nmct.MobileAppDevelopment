@@ -85,18 +85,6 @@
         android:id="@+id/textViewIndex"
         android:width="100dp"
         android:gravity="right"
-        android:layout_toLeftOf="@+id/textViewCategory"
-        android:layout_toEndOf="@+id/textViewCategory"
-        android:layout_toRightOf="@+id/textViewCategory" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Category:"
-        android:id="@+id/textViewCategory"
-        android:gravity="right"
-        android:width="100dp"
         android:layout_alignTop="@+id/imageViewBMI"
         android:layout_toRightOf="@+id/imageViewBMI"
         android:layout_toEndOf="@+id/imageViewBMI" />
@@ -104,19 +92,33 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Category:"
+        android:id="@+id/textViewCategory"
+        android:layout_toEndOf="@+id/textViewInput"
+        android:gravity="right"
+        android:width="100dp"
+        android:layout_below="@+id/textViewIndex"
+        android:layout_alignLeft="@+id/textViewIndex"
+        android:layout_alignStart="@+id/textViewIndex" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="enter your info first"
         android:id="@+id/textViewIndex1"
-        android:layout_alignBottom="@+id/textViewCategory"
-        android:layout_toRightOf="@+id/textViewIndex"
-        android:layout_toEndOf="@+id/textViewIndex" />
+        android:layout_above="@+id/textViewCategory"
+        android:layout_alignLeft="@+id/textViewCategory1"
+        android:layout_alignStart="@+id/textViewCategory1" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="enter your info first"
         android:id="@+id/textViewCategory1"
-        android:layout_below="@+id/textViewIndex1"
-        android:layout_alignRight="@+id/textViewBMI"
-        android:layout_alignEnd="@+id/textViewBMI" />
+        android:layout_alignBottom="@+id/textViewCategory"
+        android:layout_toRightOf="@+id/textViewIndex"
+        android:layout_toEndOf="@+id/textViewIndex"
+        android:layout_marginLeft="20dp" />
 
 </RelativeLayout>
