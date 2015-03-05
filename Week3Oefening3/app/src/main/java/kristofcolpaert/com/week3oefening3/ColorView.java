@@ -79,8 +79,9 @@ public class ColorView extends View
     }
 
     /*
-        Methods
-         */
+    Methods
+    */
+
     private void initRect()
     {
         this.rect = new Rect(0, 0, getWidth(), getHeight());
@@ -115,26 +116,7 @@ public class ColorView extends View
 
     protected void selectColor(int which)
     {
-        switch(which)
-        {
-            case 0:
-                setColor("#33B5E5");
-                break;
-            case 1:
-                setColor("#AA66CC");
-                break;
-            case 2:
-                setColor("#99CC00");
-                break;
-            case 3:
-                setColor("#FFBB33");
-                break;
-            case 4:
-                setColor("#FF4444");
-                break;
-            default:
-                break;
-        }
+        setColor(RectColor.getRectColorById(which).getColorValue());
     }
 
     /*
@@ -143,6 +125,7 @@ public class ColorView extends View
 
     @Override
     protected Parcelable onSaveInstanceState() {
+        super.onSaveInstanceState();
         Bundle bundle = new Bundle();
         bundle.putString("color", this.color);
         return bundle;
@@ -152,5 +135,41 @@ public class ColorView extends View
     protected void onRestoreInstanceState(Parcelable state) {
         Bundle bundle = (Bundle) state;
         this.color = bundle.getString("color", "#FFFFFF");
+    }
+
+    /*
+    Enumerations
+     */
+
+    private enum RectColor
+    {
+        COLOR0(0, "#33B5E5"),
+        COLOR1(1, "#AA66CC"),
+        COLOR2(2, "#99CC00"),
+        COLOR3(3, "#FFBB33"),
+        COLOR4(4, "#FF4444");
+
+        private int id;
+        private String colorValue;
+
+        RectColor(int id, String colorValue)
+        {
+            this.id =  id;
+            this.colorValue = colorValue;
+        }
+
+        public String getColorValue() {
+            return colorValue;
+        }
+
+        public static RectColor getRectColorById(int id)
+        {
+            for(RectColor color : RectColor.values())
+            {
+                if(color.id == id)
+                    return color;
+            }
+            return null;
+        }
     }
 }
