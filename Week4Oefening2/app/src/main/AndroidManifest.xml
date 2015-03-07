@@ -21,7 +21,8 @@
             android:label="@string/title_activity_implicit" >
             <intent-filter>
                 <action android:name="com.kristofcolpaert.week4oefening2.intent.action.IMPLY" />
-                <category android:name="android.intent.category.CAR_DOCK" />
+                <data android:scheme="xtp" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
     </application>

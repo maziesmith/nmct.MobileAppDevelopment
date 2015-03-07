@@ -21,6 +21,7 @@ import java.util.List;
 
 public class MainActivity extends ActionBarActivity {
     private Button buttonLaunch;
+    private Button buttonLaunch2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,12 +40,20 @@ public class MainActivity extends ActionBarActivity {
                 launchWithAction(v);
             }
         });
+
+        buttonLaunch2 = (Button) findViewById(R.id.buttonLaunch2);
+        buttonLaunch2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
     private void launchWithAction(View v)
     {
-        Intent intent = new Intent(Constants.ACTION_IMPLY);
-        intent.addCategory(Intent.CATEGORY_CAR_DOCK);
+        Intent intent = new Intent("android.intent.action.VIEW");
+        //intent.addCategory(Intent.CATEGORY_CAR_DOCK);
 
         //Verify if it resolves
         PackageManager packageManager = getPackageManager();
