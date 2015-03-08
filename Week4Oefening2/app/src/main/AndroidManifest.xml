@@ -21,8 +21,25 @@
             android:label="@string/title_activity_implicit" >
             <intent-filter>
                 <action android:name="com.kristofcolpaert.week4oefening2.intent.action.IMPLY" />
-                <data android:scheme="xtp" />
+
+                <!-- <data android:scheme="xtp" /> -->
+
                 <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".SecondImplicitActivity"
+            android:label="@string/title_activity_second_implicit" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="www.kortrijk.be"
+                    android:path="/nieuws"
+                    android:scheme="http" />
             </intent-filter>
         </activity>
     </application>

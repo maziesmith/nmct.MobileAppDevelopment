@@ -79,7 +79,6 @@ public class BMIFragment extends Fragment
         index = index / 100;
 
         this.textViewIndex.setText(index + " BMI");
-        Log.d(index + "", "83");
         BMI bmi = BMI.getCategory(index);
         this.textViewCategory.setText(bmi + "");
         this.imageViewBMI.setImageResource(bmi.getImage());

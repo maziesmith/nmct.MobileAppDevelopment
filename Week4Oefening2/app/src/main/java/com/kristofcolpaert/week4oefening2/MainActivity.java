@@ -45,7 +45,7 @@ public class MainActivity extends ActionBarActivity {
         buttonLaunch2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                onderzoek4();
             }
         });
     }
@@ -56,6 +56,22 @@ public class MainActivity extends ActionBarActivity {
         //intent.addCategory(Intent.CATEGORY_CAR_DOCK);
 
         //Verify if it resolves
+        PackageManager packageManager = getPackageManager();
+        List<ResolveInfo> activities = packageManager.queryIntentActivities(intent, 0);
+        Boolean isIntentSafe = activities.size() > 0;
+
+        //Start activity if it resolves
+        if(isIntentSafe)
+            startActivity(intent);
+
+        else
+            Toast.makeText(MainActivity.this, "Activity could not be loaded", Toast.LENGTH_SHORT).show();
+    }
+
+    private void onderzoek4()
+    {
+        Intent intent = new Intent(Constants.ACTION_IMPLY);
+
         PackageManager packageManager = getPackageManager();
         List<ResolveInfo> activities = packageManager.queryIntentActivities(intent, 0);
         Boolean isIntentSafe = activities.size() > 0;

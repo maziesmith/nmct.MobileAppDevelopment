@@ -6,5 +6,6 @@
     <string name="hello_android">Hello Android!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_implicit">ImplicitActivity</string>
+    <string name="title_activity_second_implicit">SecondImplicitActivity</string>
 
 </resources>
