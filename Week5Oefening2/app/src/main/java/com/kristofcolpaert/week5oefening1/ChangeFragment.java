@@ -23,6 +23,7 @@ public class ChangeFragment extends Fragment
     private EditText editTextBitcoin;
     private Button buttonEuro;
     private Button buttonBitcoin;
+
     private Button buttonChange;
     private TextView textViewRate;
 
@@ -31,6 +32,8 @@ public class ChangeFragment extends Fragment
     private float amountBitcoin = 1;
 
     public static final String BITCOIN_RATE = "com.kristofcolpaert.week5Oefening1.NEW_BITCOIN_RATE";
+    public static final String AMOUNT_EURO = "com.kristofcolpaert.week5oefening1.AMOUNT_EURO";
+    public static final String AMOUNT_BITCOIN = "com.kristofcolpaert.week5oefening1.AMOUNT_BITCOIN";
     public ChangeFragmentListener changeFragmentListener;
 
     /*
@@ -46,6 +49,13 @@ public class ChangeFragment extends Fragment
         args.putFloat(BITCOIN_RATE, bitcoinRate);
         fragment.setArguments(args);
         return fragment;
+    }
+
+    /*
+    ** Getters and setters
+     */
+    public void setCurrentRateBitcoinInEuro(float currentRateBitcoinInEuro) {
+        this.currentRateBitcoinInEuro = currentRateBitcoinInEuro;
     }
 
     /*
@@ -138,12 +148,33 @@ public class ChangeFragment extends Fragment
         super.onStop();
     }
 
+    @Override
+    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+        if(savedInstanceState != null)
+        {
+            this.amountEuro = savedInstanceState.getFloat(AMOUNT_EURO, 1.0f);
+            this.amountBitcoin = savedInstanceState.getFloat(AMOUNT_BITCOIN, 1.0f);
+
+            this.editTextBitcoin.setText("" + this.amountBitcoin);
+            this.editTextEuro.setText("" + this.amountEuro);
+        }
+
+        super.onViewStateRestored(savedInstanceState);
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        outState.putFloat(AMOUNT_BITCOIN, amountBitcoin);
+        outState.putFloat(AMOUNT_EURO, amountEuro);
+        super.onSaveInstanceState(outState);
+    }
+
     /*
-        ** Methods
-         */
+    ** Methods
+    */
     private void showRate()
     {
-        textViewRate.setText("€1 = " + currentRateBitcoinInEuro + " bitcoins");
+        textViewRate.setText("1 bitcoin = " + currentRateBitcoinInEuro + " euro");
     }
 
     private void changeToEuro()

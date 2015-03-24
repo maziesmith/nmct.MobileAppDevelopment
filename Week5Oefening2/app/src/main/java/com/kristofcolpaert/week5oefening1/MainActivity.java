@@ -6,6 +6,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,7 +25,8 @@ public class MainActivity extends ActionBarActivity implements ChangeFragment.Ch
         setContentView(R.layout.activity_main);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, ChangeFragment.newInstance(currenBitcoinRate))
+                    .add(R.id.container, ChangeFragment.newInstance(currenBitcoinRate), "changeFragment")
+                    .addToBackStack("start_changeFragment")
                     .commit();
         }
     }
@@ -51,6 +53,15 @@ public class MainActivity extends ActionBarActivity implements ChangeFragment.Ch
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onBackPressed() {
+        if(getSupportFragmentManager().getBackStackEntryCount() == 1)
+            finish();
+
+        else
+            super.onBackPressed();
+    }
+
     public void showFragmentBitcoinRate(float rate)
     {
         //Create new transaction
@@ -61,7 +72,7 @@ public class MainActivity extends ActionBarActivity implements ChangeFragment.Ch
         //and add the transaction to the back stack.
         Fragment newFragment = BitcoinRateFragment.newInstance(rate);
         fragmentTransaction.replace(R.id.container, newFragment);
-        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.addToBackStack("bitcoinRateFragment");
 
         //Commit the transaction.
         fragmentTransaction.commit();
@@ -73,13 +84,13 @@ public class MainActivity extends ActionBarActivity implements ChangeFragment.Ch
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-        //Replace whatever is in the container view with this fragment,
-        //and add the transaction to the back stack.
-        Fragment newFragment = ChangeFragment.newInstance(rate);
-        fragmentTransaction.replace(R.id.container, newFragment);
-        fragmentTransaction.addToBackStack(null);
+        ChangeFragment fragment = (ChangeFragment) fragmentManager.findFragmentByTag("changeFragment");
+        Log.d("hier", "ook");
+        fragment.setCurrentRateBitcoinInEuro(rate);
 
-        //Commit the transaction.
+        fragmentTransaction.replace(R.id.container, fragment);
+        fragmentTransaction.addToBackStack("changeFragment");
+
         fragmentTransaction.commit();
     }
 }
