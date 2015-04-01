@@ -16,7 +16,8 @@ import android.os.Build;
 import com.kristofcolpaert.week6oefening1bis.data.Data;
 
 
-public class MainActivity extends ActionBarActivity implements BirthYearFragment.BirthYearFragmentListener, MainFragment.MainFragmentListener
+public class MainActivity extends ActionBarActivity implements BirthYearFragment.BirthYearFragmentListener,
+        MainFragment.MainFragmentListener, HoroscopeFragment.HoroScopeFragmentListener
 {
 
     /*
@@ -63,5 +64,26 @@ public class MainActivity extends ActionBarActivity implements BirthYearFragment
 
         BirthYearFragment birthYearFragment = BirthYearFragment.newInstance();
         fragmentTransaction.replace(R.id.container, birthYearFragment).addToBackStack(null).commit();
+    }
+
+    @Override
+    public void showHoroscopeFragment()
+    {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+        HoroscopeFragment horoscopeFragment = HoroscopeFragment.newInstance();
+        fragmentTransaction.replace(R.id.container, horoscopeFragment).addToBackStack(null).commit();
+    }
+
+    @Override
+    public void showMainFragment(Data.Horoscoop horoscope) {
+        this.horoscope = horoscope;
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+        MainFragment mainFragment = MainFragment.newInstance(this.horoscope, this.year);
+        fragmentTransaction.replace(R.id.container, mainFragment).addToBackStack(null).commit();
     }
 }

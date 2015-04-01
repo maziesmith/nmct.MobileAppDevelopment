@@ -44,5 +44,15 @@ public class Data {
 		}
 
         public int getDrawable() { return drawable; }
+
+        public static Horoscoop getHoroscoopByName(String name)
+        {
+            for(Horoscoop horoscoop : Horoscoop.values())
+            {
+                if(horoscoop.getNaamHoroscoop() == name)
+                    return horoscoop;
+            }
+            return Horoscoop.BOOGSCHUTTER;
+        }
     }
 }
