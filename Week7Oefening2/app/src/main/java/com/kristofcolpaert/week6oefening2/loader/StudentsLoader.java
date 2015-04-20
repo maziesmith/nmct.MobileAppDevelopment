@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.provider.BaseColumns;
 import android.provider.ContactsContract;
+import android.util.Log;
 
 import com.kristofcolpaert.week6oefening2.data.Student;
 import com.kristofcolpaert.week6oefening2.data.StudentAdmin;
@@ -31,12 +32,20 @@ public class StudentsLoader extends AsyncTaskLoader<Cursor>
 
     private static Object lock = new Object();
 
+    private Student.DIPLOMAGRAAD diplomagraad;
+
     /*
     ** Constructor
      */
     public StudentsLoader(Context context)
     {
         super(context);
+    }
+
+    public StudentsLoader(Context context, Student.DIPLOMAGRAAD diplomagraad)
+    {
+        this(context);
+        this.diplomagraad = diplomagraad;
     }
 
     /*
@@ -76,19 +85,39 @@ public class StudentsLoader extends AsyncTaskLoader<Cursor>
                 return;
             }
 
-            MatrixCursor cursor = new MatrixCursor(mColumnNames);
-            int id = 1;
-            for(Student student : StudentAdmin.getStudenten())
+            if(diplomagraad == null)
             {
-                MatrixCursor.RowBuilder row = cursor.newRow();
-                row.add(id);
-                row.add(student.getNaamStudent());
-                row.add(student.getVoornaamStudent());
-                row.add(student.getEmailStudent());
-                row.add(student.getTotaleScoreStudent());
-                id++;
+                MatrixCursor cursor = new MatrixCursor(mColumnNames);
+                int id = 1;
+                for(Student student : StudentAdmin.getStudenten())
+                {
+                    MatrixCursor.RowBuilder row = cursor.newRow();
+                    row.add(id);
+                    row.add(student.getNaamStudent());
+                    row.add(student.getVoornaamStudent());
+                    row.add(student.getEmailStudent());
+                    row.add(student.getTotaleScoreStudent());
+                    id++;
+                }
+                mCursor = cursor;
             }
-            mCursor = cursor;
+
+            else
+            {
+                MatrixCursor cursor = new MatrixCursor(mColumnNames);
+                int id = 1;
+                for(Student student : StudentAdmin.getStudenten(this.diplomagraad))
+                {
+                    MatrixCursor.RowBuilder row = cursor.newRow();
+                    row.add(id);
+                    row.add(student.getNaamStudent());
+                    row.add(student.getVoornaamStudent());
+                    row.add(student.getEmailStudent());
+                    row.add(student.getTotaleScoreStudent());
+                    id++;
+                }
+                mCursor = cursor;
+            }
         }
     }
 }

@@ -34,6 +34,15 @@ public class StudentsFragment extends ListFragment implements LoaderManager.Load
     private StudentAdapter mAdapter;
     private StudentsFragmentListener studentsFragmentListener;
 
+    private Student.DIPLOMAGRAAD diplomagraad;
+    public void setDiplomagraad(Student.DIPLOMAGRAAD diplomagraad) {
+        this.diplomagraad = diplomagraad;
+
+        Bundle bundle = new Bundle();
+        bundle.putInt(StudentsActivity.EXTRA_GRADE, diplomagraad.ordinal());
+        getLoaderManager().restartLoader(0, bundle, this);
+    }
+
     /*
     ** Constructor
      */
@@ -77,7 +86,16 @@ public class StudentsFragment extends ListFragment implements LoaderManager.Load
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        return new StudentsLoader(getActivity());
+        if(args == null)
+        {
+            return new StudentsLoader(getActivity());
+        }
+
+        else
+        {
+            this.diplomagraad = Student.DIPLOMAGRAAD.values()[args.getInt(StudentsActivity.EXTRA_GRADE)];
+            return new StudentsLoader(getActivity(), this.diplomagraad);
+        }
     }
 
     @Override
