@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="16dp">
+
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:id="@+id/imageView"
+        android:src="@drawable/house"
+        android:layout_margin="16dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Straat en huisnummer"
+        android:id="@+id/textViewAddress"
+        android:layout_alignTop="@+id/imageView"
+        android:layout_toRightOf="@+id/imageView"
+        android:layout_toEndOf="@+id/imageView" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Gemeente"
+        android:id="@+id/textViewCity"
+        android:layout_below="@+id/textViewAddress"
+        android:layout_alignLeft="@+id/textViewAddress"
+        android:layout_alignStart="@+id/textViewAddress"
+        android:layout_marginTop="5dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Aantal kamers: 10"
+        android:id="@+id/textViewNumber"
+        android:layout_alignTop="@+id/textViewCity"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="30dp"
+        android:layout_marginEnd="30dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="10"
+        android:id="@+id/textViewHomeNumber"
+        android:layout_above="@+id/textViewNumber"
+        android:layout_toRightOf="@+id/textViewAddress"
+        android:layout_toEndOf="@+id/textViewAddress"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="5dp" />
+
+</RelativeLayout>
