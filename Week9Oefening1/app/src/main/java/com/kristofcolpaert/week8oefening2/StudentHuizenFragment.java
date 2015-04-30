@@ -1,17 +1,15 @@
 package com.kristofcolpaert.week8oefening2;
 
-
-import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.MatrixCursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.ContactsContract;
+import android.provider.BaseColumns;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ListFragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
-
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -24,9 +22,6 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.SimpleCursorAdapter;
-import android.widget.TextClock;
-import android.widget.TextView;
-
 import com.kristofcolpaert.week8oefening2.loader.Contract;
 import com.kristofcolpaert.week8oefening2.loader.StudentHuizenLoader;
 
@@ -41,6 +36,8 @@ public class StudentHuizenFragment extends ListFragment implements LoaderManager
 
     private SimpleCursorAdapter adapter;
     private SearchView searchView;
+    private String street;
+    private Cursor baseCursor;
 
     /*
     ** Events
@@ -89,6 +86,7 @@ public class StudentHuizenFragment extends ListFragment implements LoaderManager
     public void onLoadFinished(android.support.v4.content.Loader<Cursor> cursorLoader, Cursor cursor)
     {
         this.adapter.swapCursor(cursor);
+        this.baseCursor = cursor;
     }
 
     @Override
@@ -134,20 +132,26 @@ public class StudentHuizenFragment extends ListFragment implements LoaderManager
         {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after)
-            {
-
-            }
+            { }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count)
             {
-
+                String currentString = s.toString();
+                if(currentString.isEmpty())
+                {
+                    adapter.swapCursor(baseCursor);
+                }
             }
 
             @Override
             public void afterTextChanged(Editable s)
             {
-
+                String currentString = s.toString();
+                if(currentString.isEmpty())
+                {
+                    adapter.swapCursor(baseCursor);
+                }
             }
         });
     }
@@ -173,12 +177,16 @@ public class StudentHuizenFragment extends ListFragment implements LoaderManager
             @Override
             public boolean onQueryTextSubmit(String s)
             {
+                street = s;
+                filterCursorOnStreet();
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String s)
             {
+                street = s;
+                filterCursorOnStreet();
                 return false;
             }
         });
@@ -186,6 +194,43 @@ public class StudentHuizenFragment extends ListFragment implements LoaderManager
 
     private boolean isAlwaysExpanded()
     {
-        return false;
+        return true;
+    }
+
+    private void filterCursorOnStreet()
+    {
+        String[] tempColumnNames = new String[]
+        {
+                BaseColumns._ID,
+                Contract.KotColumns.COLUMN_ADRES,
+                Contract.KotColumns.COLUMN_HUISNUMMER,
+                Contract.KotColumns.COLUMN_GEMEENTE,
+                Contract.KotColumns.COLUMN_AANTAL_KAMERS,
+        };
+
+        MatrixCursor newCursor = new MatrixCursor(tempColumnNames);
+        int colnr1 = baseCursor.getColumnIndex(Contract.KotColumns.COLUMN_ADRES);
+        int colnr2 = baseCursor.getColumnIndex(Contract.KotColumns.COLUMN_HUISNUMMER);
+        int colnr3 = baseCursor.getColumnIndex(Contract.KotColumns.COLUMN_GEMEENTE);
+        int colnr4 = baseCursor.getColumnIndex(Contract.KotColumns.COLUMN_AANTAL_KAMERS);
+
+        int id = 1;
+        if(baseCursor.moveToFirst())
+        {
+            do
+            {
+                if(baseCursor.getString(colnr1).toLowerCase().contains(street.toLowerCase().trim()))
+                {
+                    MatrixCursor.RowBuilder row = newCursor.newRow();
+                    row.add(id++);
+                    row.add(baseCursor.getString(colnr1));
+                    row.add(baseCursor.getString(colnr2));
+                    row.add(baseCursor.getString(colnr3));
+                    row.add(baseCursor.getString(colnr4));
+                }
+            } while(baseCursor.moveToNext());
+        }
+
+        this.adapter.swapCursor(newCursor);
     }
 }
