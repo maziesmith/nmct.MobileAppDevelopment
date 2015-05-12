@@ -11,6 +11,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -73,6 +74,7 @@ public class StudentDetailsFragment extends Fragment implements LoaderManager.Lo
 
         if(getActivity() != null)
         {
+            Log.d("Activity:", getArguments() + "");
             Bundle bundle = getArguments();
             this.email = bundle.getString(StudentsActivity.EXTRA_EMAIL);
             this.student = StudentAdmin.getStudent(this.email);

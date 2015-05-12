@@ -1,14 +1,20 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:id="@+id/container"
     android:layout_width="match_parent" android:layout_height="match_parent"
     tools:context=".StudentsActivity" tools:ignore="MergeRootFrame">
 
     <fragment
-        android:layout_width=""
-        android:layout_height=""/>
-    
-    <fragment
-        android:layout_width=""
-        android:layout_height=""/>
+        class="com.kristofcolpaert.week6oefening2.StudentsFragment"
+        android:name="com.kristofcolpaert.week6oefening2.StudentsFragment"
+        android:id="@+id/list_fragment"
+        android:layout_width="240dp"
+        android:layout_height="fill_parent"/>
 
-</FrameLayout>
+    <fragment
+        class="com.kristofcolpaert.week6oefening2.StudentDetailsFragment"
+        android:name="com.kristofcolpaert.week6oefening2.StudentDetailsFragment"
+        android:id="@+id/detail_fragment"
+        android:layout_width="240dp"
+        android:layout_height="fill_parent"/>
+
+</LinearLayout>
