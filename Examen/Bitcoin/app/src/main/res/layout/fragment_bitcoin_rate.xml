@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="16dp">
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Uw bedrag in euro:"
+        android:id="@+id/textViewEuroBedrag"
+        style="?android:attr/listSeparatorTextViewStyle"
+        android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editTextEuroBedrag"
+        android:layout_marginTop="16dp"
+        android:hint="0 euro" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal">
+
+        <Button
+            android:layout_width="125dp"
+            android:layout_height="wrap_content"
+            android:text="Naar bitcoin"
+            android:id="@+id/buttonToBitcoin"
+            android:layout_marginTop="25dp"
+            android:layout_marginRight="10dp" />
+
+        <Button
+            android:layout_width="125dp"
+            android:layout_height="wrap_content"
+            android:text="Naar euro"
+            android:id="@+id/buttonToEuro"
+            android:layout_marginTop="25dp"
+            android:layout_marginLeft="10dp" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Uw bedrag in Bitcoin"
+        android:id="@+id/textViewBitcoinBedrag"
+        android:layout_marginTop="25dp"
+        style="?android:attr/listSeparatorTextViewStyle"
+        android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editTextBitcoinBedrag"
+        android:layout_marginTop="16dp"
+        android:hint="0 bitcoin" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1 bitcoin = 100.0"
+        android:id="@+id/textViewBitcoinInEuro"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="200dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Wijzig koers euro - bitcoin"
+        android:id="@+id/buttonWijzigKoers"
+        android:layout_gravity="center_horizontal" />
+
+
+</LinearLayout>
