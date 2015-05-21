@@ -32,7 +32,6 @@ public class BitcoinRateFragment extends Fragment
     public void setBitcoinRate(double bitcoinRate)
     {
         this.bitcoinRate = bitcoinRate;
-        this.textViewBitcoinInEuro.setText("1 bitcoin = " + bitcoinRate);
     }
     private BitcoinRateFragmentListener fragmentListener;
 

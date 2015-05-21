@@ -1,6 +1,8 @@
 package be.howest.nmct.bitcoin;
 
+import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 
@@ -28,15 +30,36 @@ public class MainActivity extends ActionBarActivity implements BitcoinRateFragme
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        SharedPreferences sharedPreferences = getSharedPreferences(EXTRA_BITCOIN_KEY, MODE_PRIVATE);
-        this.bitcoinRate = sharedPreferences.getFloat(EXTRA_BITCOIN_RATE, 100.0f);
+        if(isTablet(this))
+        {
+            SharedPreferences sharedPreferences = getSharedPreferences(EXTRA_BITCOIN_KEY, MODE_PRIVATE);
+            this.bitcoinRate = sharedPreferences.getFloat(EXTRA_BITCOIN_RATE, 100.0f);
 
-        BitcoinRateFragment bitcoinRateFragment = BitcoinRateFragment.newInstance(this.bitcoinRate);
-        getSupportFragmentManager()
-                .beginTransaction()
-                .add(R.id.container, bitcoinRateFragment, "changeFragment")
-                .addToBackStack(null)
-                .commit();
+            BitcoinRateFragment bitcoinRateFragment = BitcoinRateFragment.newInstance(this.bitcoinRate);
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .add(R.id.right, bitcoinRateFragment, "changeFragment")
+                    .commit();
+
+            ChangeFragment changeFragment = ChangeFragment.newInstance(this.bitcoinRate);
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .add(R.id.left, changeFragment, "bitcoinRateFragment")
+                    .commit();
+        }
+
+        else
+        {
+            SharedPreferences sharedPreferences = getSharedPreferences(EXTRA_BITCOIN_KEY, MODE_PRIVATE);
+            this.bitcoinRate = sharedPreferences.getFloat(EXTRA_BITCOIN_RATE, 100.0f);
+
+            BitcoinRateFragment bitcoinRateFragment = BitcoinRateFragment.newInstance(this.bitcoinRate);
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .add(R.id.container, bitcoinRateFragment, "changeFragment")
+                    .addToBackStack(null)
+                    .commit();
+        }
     }
 
     @Override
@@ -53,15 +76,30 @@ public class MainActivity extends ActionBarActivity implements BitcoinRateFragme
         }
     }
 
+    public static boolean isTablet(Context context)
+    {
+        return(context.getResources().getConfiguration().screenLayout
+            & Configuration.SCREENLAYOUT_SIZE_MASK)
+            >= Configuration.SCREENLAYOUT_SIZE_LARGE;
+    }
+
     @Override
     public void ShowChangeFragment(double bitcoinRate)
     {
-        ChangeFragment changeFragment = ChangeFragment.newInstance(bitcoinRate);
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.container, changeFragment)
-                .addToBackStack(null)
-                .commit();
+        if(isTablet(this))
+        {
+            return;
+        }
+
+        else
+        {
+            ChangeFragment changeFragment = ChangeFragment.newInstance(bitcoinRate);
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.container, changeFragment)
+                    .addToBackStack(null)
+                    .commit();
+        }
     }
 
     @Override
@@ -73,11 +111,31 @@ public class MainActivity extends ActionBarActivity implements BitcoinRateFragme
         editor.apply();
         editor.commit();
 
-        BitcoinRateFragment bitcoinRateFragment = (BitcoinRateFragment) getSupportFragmentManager().findFragmentByTag("changeFragment");
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.container, bitcoinRateFragment)
-                .addToBackStack(null)
-                .commit();
+        if(isTablet(this))
+        {
+            BitcoinRateFragment bitcoinRateFragment = (BitcoinRateFragment) getSupportFragmentManager().findFragmentByTag("changeFragment");
+            bitcoinRateFragment.setBitcoinRate(bitcoinRate);
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.right, bitcoinRateFragment)
+                    .commit();
+
+            ChangeFragment changeFragment = ChangeFragment.newInstance(bitcoinRate);
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.left, changeFragment)
+                    .commit();
+        }
+
+        else
+        {
+            BitcoinRateFragment bitcoinRateFragment = (BitcoinRateFragment) getSupportFragmentManager().findFragmentByTag("changeFragment");
+            bitcoinRateFragment.setBitcoinRate(bitcoinRate);
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.container, bitcoinRateFragment)
+                    .addToBackStack(null)
+                    .commit();
+        }
     }
 }

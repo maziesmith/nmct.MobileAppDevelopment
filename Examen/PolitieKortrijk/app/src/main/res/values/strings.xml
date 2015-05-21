@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Politie Kortrijk</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="drawer_open">Toon menu</string>
+    <string name="drawer_close">Verberg menu</string>
+</resources>

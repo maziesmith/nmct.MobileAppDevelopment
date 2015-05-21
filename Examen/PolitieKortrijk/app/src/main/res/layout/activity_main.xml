@@ -1,0 +1,26 @@
+<android.support.v4.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:id="@+id/drawer_layout">
+
+    <FrameLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/container"
+        tools:context=".MainActivity"
+        tools:ignor="MergeRootFrame"/>
+
+    <fragment
+        android:name="be.howest.nmct.politiekortrijk.SnelheidsMetingenFragment"
+        android:layout_width="350dp"
+        android:layout_height="match_parent"
+        android:id="@+id/diplomagraad_fragment"
+        android:layout_gravity="start"
+        android:dividerHeight="0dp"/>
+
+</android.support.v4.widget.DrawerLayout>

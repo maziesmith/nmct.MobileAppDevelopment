@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="16dp">
+
+    <ImageView
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:id="@+id/imageViewIcon"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:src="@drawable/student_black"
+        android:layout_marginRight="16dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Naam"
+        android:id="@+id/textViewNaam"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/imageViewIcon"
+        android:layout_toEndOf="@+id/imageViewIcon" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Voornaam"
+        android:id="@+id/textViewVoornaam"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/textViewNaam"
+        android:layout_toEndOf="@+id/textViewNaam"
+        android:layout_marginLeft="5dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Email"
+        android:id="@+id/textViewEmail"
+        android:layout_below="@+id/textViewNaam"
+        android:layout_toRightOf="@+id/imageViewIcon"
+        android:layout_toEndOf="@+id/imageViewIcon"
+        android:layout_marginTop="5dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Score: "
+        android:id="@+id/textViewScore"
+        android:layout_below="@+id/textViewEmail"
+        android:layout_toRightOf="@+id/imageViewIcon"
+        android:layout_toEndOf="@+id/imageViewIcon"
+        android:layout_marginTop="5dp" />
+
+</RelativeLayout>
